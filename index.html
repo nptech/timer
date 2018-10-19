@@ -1,0 +1,202 @@
+<!DOCTYPE html><html lang="ru"><head>
+<meta charset="UTF-8">
+<title>НПТ таймер</title>
+<style>
+body{
+  text-align: center;
+  background: #00ECB9;
+  font-family: sans-serif;
+  font-weight: 100;
+}
+
+h1{
+  color: #396;
+  font-weight: 100;
+  font-size: 40px;
+  margin: 40px 0px 20px;
+}
+
+#clockdiv{
+	font-family: sans-serif;
+	color: #fff;
+	display: none;
+	font-weight: 100;
+	text-align: center;
+	font-size: 30px;
+}
+
+#clockdiv > div{
+	padding: 10px;
+	border-radius: 3px;
+	background: #00BF96;
+	display: inline-block;
+}
+
+#clockdiv div > span{
+	padding: 15px;
+	border-radius: 3px;
+	background: #00816A;
+	display: inline-block;
+}
+
+.smalltext{
+	padding-top: 5px;
+	font-size: 16px;
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="title">Хорошего отдыха!</h1>
+<div id="clockdiv">
+  <div>
+    <span class="minutes"></span>
+    <div class="smalltext">Минут</div>
+  </div>
+  <div>
+    <span class="seconds"></span>
+    <div class="smalltext">Секунд</div>
+  </div>
+</div>
+<script>
+function getTimeRemaining(endtime) {
+  var t = endtime - Date.parse(new Date());
+  var seconds = Math.floor((t / 1000) % 60);
+  var minutes = Math.floor((t / 1000 / 60) % 60);
+  return {
+    'total': t,
+    'minutes': minutes,
+    'seconds': seconds
+  };
+}
+
+function initializeClock(id, endtime) {
+  var clock = document.getElementById(id);
+  clock.style.display = 'block';
+  var minutesSpan = clock.querySelector('.minutes');
+  var secondsSpan = clock.querySelector('.seconds');
+
+  function updateClock() {
+    var t = getTimeRemaining(endtime);
+
+    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+    if (t.total <= 0) {
+      clearInterval(timeinterval);
+    }
+  }
+
+  updateClock();
+  var timeinterval = setInterval(updateClock, 1000);
+}
+
+var today = new Date();
+var scheduleU = [
+    [today.setHours(7,0,0,1), today.setHours(8,0,0,0)],
+    [today.setHours(8,0,0,0), today.setHours(8,45,0,0)],
+    [today.setHours(8,45,0,0), today.setHours(8,50,0,0)],
+    [today.setHours(8,50,0,0), today.setHours(9,35,0,0)],
+    [today.setHours(9,35,0,0), today.setHours(9,55,0,0)],
+    [today.setHours(9,55,0,0), today.setHours(10,40,0,0)],
+    [today.setHours(10,40,0,0), today.setHours(11,0,0,0)],
+    [today.setHours(11,0,0,0), today.setHours(11,45,0,0)],
+    [today.setHours(11,45,0,0), today.setHours(12,5,0,0)],
+    [today.setHours(12,5,0,0), today.setHours(12,50,0,0)],
+    [today.setHours(12,50,0,0), today.setHours(12,55,0,0)],
+    [today.setHours(12,55,0,0), today.setHours(13,40,0,0)],
+    [today.setHours(13,40,0,0), today.setHours(14,0,0,0)],
+    [today.setHours(14,0,0,0), today.setHours(14,45,0,0)],
+    [today.setHours(14,45,0,0), today.setHours(14,50,0,0)],
+    [today.setHours(14,50,0,0), today.setHours(15,35,0,0)],
+    [today.setHours(15,35,0,0), today.setHours(15,45,0,0)],
+    [today.setHours(15,45,0,0), today.setHours(16,30,0,0)],
+    [today.setHours(16,30,0,0), today.setHours(16,35,0,0)],
+    [today.setHours(16,35,0,0), today.setHours(17,20,0,0)],
+    [today.setHours(17,20,0,0), today.setHours(17,30,0,0)],
+    [today.setHours(17,30,0,0), today.setHours(18,15,0,0)],
+    [today.setHours(18,15,0,0), today.setHours(18,20,0,0)],
+    [today.setHours(18,20,0,0), today.setHours(19,5,0,0)]
+];
+var scheduleT = [
+    [today.setHours(7,0,0,1), today.setHours(8,0,0,0)],
+    [today.setHours(8,0,0,0), today.setHours(8,45,0,0)],
+    [today.setHours(8,45,0,0), today.setHours(8,50,0,0)],
+    [today.setHours(8,50,0,0), today.setHours(9,35,0,0)],
+    [today.setHours(9,35,0,0), today.setHours(9,55,0,0)],
+    [today.setHours(9,55,0,0), today.setHours(10,40,0,0)],
+    [today.setHours(10,40,0,0), today.setHours(10,55,0,0)],
+    [today.setHours(10,55,0,0), today.setHours(11,40,0,0)],
+    [today.setHours(11,40,0,0), today.setHours(12,0,0,0)],
+    [today.setHours(12,0,0,0), today.setHours(12,45,0,0)],
+    [today.setHours(12,45,0,0), today.setHours(13,5,0,0)],
+    [today.setHours(13,5,0,0), today.setHours(13,50,0,0)],
+    [today.setHours(13,50,0,0), today.setHours(14,10,0,0)],
+    [today.setHours(14,10,0,0), today.setHours(14,55,0,0)],
+    [today.setHours(14,55,0,0), today.setHours(15,0,0,0)],
+    [today.setHours(15,0,0,0), today.setHours(15,45,0,0)],
+    [today.setHours(15,45,0,0), today.setHours(15,55,0,0)],
+    [today.setHours(15,55,0,0), today.setHours(16,40,0,0)],
+    [today.setHours(16,40,0,0), today.setHours(16,45,0,0)],
+    [today.setHours(16,45,0,0), today.setHours(17,30,0,0)],
+    [today.setHours(17,30,0,0), today.setHours(17,40,0,0)],
+    [today.setHours(17,40,0,0), today.setHours(18,25,0,0)],
+    [today.setHours(18,25,0,0), today.setHours(18,30,0,0)],
+    [today.setHours(18,30,0,0), today.setHours(19,15,0,0)]
+];
+var scheduleS = [
+    [today.setHours(7,0,0,1), today.setHours(8,0,0,0)],
+    [today.setHours(8,0,0,0), today.setHours(8,35,0,0)],
+    [today.setHours(8,35,0,0), today.setHours(8,50,0,0)],
+    [today.setHours(8,50,0,0), today.setHours(9,25,0,0)],
+    [today.setHours(9,25,0,0), today.setHours(9,30,0,0)],
+    [today.setHours(9,30,0,0), today.setHours(10,5,0,0)],
+    [today.setHours(10,5,0,0), today.setHours(10,20,0,0)],
+    [today.setHours(10,20,0,0), today.setHours(10,55,0,0)],
+    [today.setHours(10,55,0,0), today.setHours(11,10,0,0)],
+    [today.setHours(11,10,0,0), today.setHours(11,45,0,0)],
+    [today.setHours(11,45,0,0), today.setHours(11,50,0,0)],
+    [today.setHours(11,50,0,0), today.setHours(12,25,0,0)],
+    [today.setHours(12,25,0,0), today.setHours(12,40,0,0)],
+    [today.setHours(12,40,0,0), today.setHours(13,15,0,0)],
+    [today.setHours(13,15,0,0), today.setHours(13,20,0,0)],
+    [today.setHours(13,20,0,0), today.setHours(13,55,0,0)],
+    [today.setHours(13,55,0,0), today.setHours(14,5,0,0)],
+    [today.setHours(14,5,0,0), today.setHours(14,40,0,0)],
+    [today.setHours(14,40,0,0), today.setHours(14,45,0,0)],
+    [today.setHours(14,45,0,0), today.setHours(15,20,0,0)],
+    [today.setHours(15,20,0,0), today.setHours(15,30,0,0)],
+    [today.setHours(15,30,0,0), today.setHours(16,15,0,0)],
+    [today.setHours(16,15,0,0), today.setHours(16,20,0,0)],
+    [today.setHours(16,20,0,0), today.setHours(16,55,0,0)]
+];
+var schedule;
+if (today.getDay() === 2) {
+  schedule = scheduleT;
+} else if (today.getDay() === 6) {
+  schedule = scheduleS;
+} else {
+  schedule = scheduleU;
+}
+
+for(var i = 0, lesson = false; i < schedule.length; i++, lesson = !lesson){
+  // put dates in milliseconds for easy comparisons
+  var startMs = schedule[i][0];
+  var endMs = schedule[i][1];
+  var currentMs = Date.parse(today);
+  // if current date is between start and end dates, display clock
+  if (now.getDay() === 0) {
+    document.getElementById("title").textContent = "Хорошего отдыха!";
+  }
+  else if(endMs >= currentMs  && currentMs >= startMs){
+    if (lesson) {
+      document.getElementById("title").textContent = "До конца урока";
+    }
+    else {
+      document.getElementById("title").textContent = "До начала урока";
+    }
+      initializeClock('clockdiv', endMs);
+  }
+}
+</script></body></html>
