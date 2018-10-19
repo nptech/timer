@@ -181,15 +181,10 @@ if (today.getDay() === 2) {
 }
 
 for(var i = 0, lesson = false; i < schedule.length; i++, lesson = !lesson){
-  // put dates in milliseconds for easy comparisons
   var startMs = schedule[i][0];
   var endMs = schedule[i][1];
   var currentMs = Date.parse(today);
-  // if current date is between start and end dates, display clock
-  if (now.getDay() === 0) {
-    document.getElementById("title").textContent = "Хорошего отдыха!";
-  }
-  else if(endMs >= currentMs  && currentMs >= startMs){
+  if(today.getDay() === 0 && endMs >= currentMs  && currentMs >= startMs){
     if (lesson) {
       document.getElementById("title").textContent = "До конца урока";
     }
