@@ -183,7 +183,7 @@ if (today.getDay() === 2) {
 for(var i = 0, lesson = false; i < schedule.length; i++, lesson = !lesson){
   var startMs = schedule[i][0];
   var endMs = schedule[i][1];
-  var currentMs = Date.parse(today);
+  var currentMs = Date.parse(new Date());
   if(today.getDay() !== 0 && endMs >= currentMs  && currentMs >= startMs){
     if (lesson) {
       document.getElementById("title").textContent = "До конца урока";
