@@ -181,7 +181,7 @@ if (today.getDay() === 2) {
   schedule = scheduleU;
 }
 
-for(var i = 0, lesson = false; i < schedule.length; i++, lesson = !lesson){
+for(var i = 0, lesson = true; i < schedule.length; i++, lesson = !lesson){
   var startMs = today.setHours(schedule[i][0][0],schedule[i][0][1],0,0);
   var endMs = today.setHours(schedule[i][1][0],schedule[i][1][1],0,0);
   var currentMs = Date.parse(new Date());
