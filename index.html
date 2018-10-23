@@ -93,7 +93,7 @@ function initializeClock(id, endtime) {
 }
 
 var scheduleU = [
-  [[7,0], [8,0]],
+  [[7,1], [8,0]],
   [[8,0], [8,45]],
   [[8,0], [8,45]],
   [[8,45], [8,50]],
@@ -120,7 +120,7 @@ var scheduleU = [
   [[18,20], [19,5]]
 ];
 var scheduleT = [
-  [[7,0], [8,0]],
+  [[7,1], [8,0]],
   [[8,0], [8,45]],
   [[8,45], [8,50]],
   [[8,50], [9,35]],
@@ -146,7 +146,7 @@ var scheduleT = [
   [[18,30], [19,15]]
 ];
 var scheduleS = [
-  [[7,0], [8,0]],
+  [[7,1], [8,0]],
   [[8,0], [8,35]],
   [[8,35], [8,50]],
   [[8,50], [9,25]],
@@ -181,11 +181,11 @@ if (today.getDay() === 2) {
   schedule = scheduleU;
 }
 
-for(var i = 0, lesson = true; i < schedule.length; i++, lesson = !lesson){
+for(var i = 0, lesson = false; i < schedule.length; i++, lesson = !lesson){
   var startMs = today.setHours(schedule[i][0][0],schedule[i][0][1],0,0);
   var endMs = today.setHours(schedule[i][1][0],schedule[i][1][1],0,0);
   var currentMs = Date.parse(new Date());
-  if(today.getDay() !== 0 && endMs >= currentMs  && currentMs >= startMs){
+  if(today.getDay() !== 0 && endMs > currentMs  && currentMs >= startMs){
     if (lesson) {
       document.getElementById("title").textContent = "До конца урока";
     }
